@@ -126,7 +126,6 @@ public class MainPresenter extends BasePresenter<MainView> {
 
     public void
     getSourceBaseUrl() {
-        Debug.waitForDebugger();
         mCompositeSubscription.add(
                 Observable.create(new Observable.OnSubscribe<String>() {
                     @Override

@@ -1,5 +1,6 @@
 package com.haleydu.cimoc.manager;
 
+import android.os.Debug;
 import android.util.SparseArray;
 
 import com.haleydu.cimoc.component.AppGetter;
@@ -63,12 +64,14 @@ public class SourceManager {
     }
 
     public Source load(int type) {
+        Debug.waitForDebugger();
         return mSourceDao.queryBuilder()
                 .where(Properties.Type.eq(type))
                 .unique();
     }
 
     public long insert(Source source) {
+        Debug.waitForDebugger();
         return mSourceDao.insert(source);
     }
 
