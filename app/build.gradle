@@ -21,6 +21,14 @@ else {
     version = cmdGetTagname.execute().text.trim()
 }
 
+gradle.taskGraph.whenReady {
+    tasks.each { task ->
+            if (task.name.contains("uploadCrashlyticsMappingFileRelease")) {
+                task.enabled = false
+            }
+    }
+}
+
 android {
     compileSdkVersion 30
     buildToolsVersion '30.0.3'
@@ -72,7 +80,7 @@ android {
 
         android.applicationVariants.all { variant ->
             variant.outputs.all {
-                outputFileName = "Cimoc_"+version+".apk"
+                outputFileName = "thmanga"+version+".apk"
             }
         }
     }

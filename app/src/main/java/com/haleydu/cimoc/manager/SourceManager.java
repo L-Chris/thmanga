@@ -81,6 +81,9 @@ public class SourceManager {
         if (parser == null) {
             Source source = load(type);
             switch (type) {
+                case BAOZIMH.TYPE:
+                    parser = new BAOZIMH(source);
+                    break;
                 case IKanman.TYPE:
                     parser = new IKanman(source);
                     break;

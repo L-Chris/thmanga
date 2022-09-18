@@ -117,78 +117,13 @@ public class MainActivity extends BaseActivity implements MainView, NavigationVi
         initFragment();
     }
 
-//    private void login() {
-//        HintUtils.showToast(MainActivity.this, R.string.user_login_tips);
-//        WebAuthProvider.init(auth0)
-//            .withScheme("demo")
-//            .withScope("openid profile email")
-//            .withAudience(String.format("https://%s/userinfo", getString(R.string.com_auth0_domain)))
-//            .start(MainActivity.this, new AuthCallback() {
-//                @Override
-//                public void onFailure(@NonNull final Dialog dialog) {
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            dialog.show();
-//                        }
-//                    });
-//                }
-//
-//                @Override
-//                public void onFailure(final AuthenticationException exception) {
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-////                            Toast.makeText(MainActivity.this, "Error: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-//                            HintUtils.showToast(MainActivity.this, R.string.user_login_failed);
-//                        }
-//                    });
-//                }
-//
-//                @Override
-//                public void onSuccess(@NonNull final Credentials credentials) {
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-////                            Toast.makeText(MainActivity.this, "Logged in: " + credentials.getAccessToken(), Toast.LENGTH_LONG).show();
-//                            HintUtils.showToast(MainActivity.this, R.string.user_login_sucess);
-//                            mPreference.putString(PreferenceManager.PREFERENCES_USER_TOCKEN, credentials.getAccessToken());
-//                            getUesrInfo();
-//                        }
-//                    });
-//                }
-//            });
-//    }
-//
-//    private void logoutShowDialog(){
-//        MessageDialogFragment fragment = MessageDialogFragment.newInstance(R.string.user_login_logout,
-//            R.string.user_login_logout_tips, true, DIALOG_REQUEST_LOGOUT);
-//        fragment.show(getSupportFragmentManager(), null);
-//    }
-//
-//    private void logout() {
-//        HintUtils.showToast(MainActivity.this, R.string.user_login_logout_sucess);
-//        mPreference.putString(PreferenceManager.PREFERENCES_USER_EMAIL, "");
-//        mPreference.putString(PreferenceManager.PREFERENCES_USER_TOCKEN, "");
-//        mPreference.putString(PreferenceManager.PREFERENCES_USER_NAME, "");
-//        mPreference.putString(PreferenceManager.PREFERENCES_USER_ID, "");
-//    }
-//
-//    private void loginout() {
-//        if (mPreference.getString(PreferenceManager.PREFERENCES_USER_ID, "") == "") {
-//            login();
-//        } else {
-//            logoutShowDialog();
-//        }
-//    }
-
     @Override
     protected void initData() {
         mPresenter.loadLast();
 
         //检查App更新
         String updateUrl;
-        if (mPreference.getBoolean(PreferenceManager.PREF_UPDATE_APP_AUTO, true)) {
+        if (mPreference.getBoolean(PreferenceManager.PREF_UPDATE_APP_AUTO, false)) {
             if ((updateUrl = App.getPreferenceManager().getString(PreferenceManager.PREF_UPDATE_CURRENT_URL)) != null) {
                 App.setUpdateCurrentUrl(updateUrl);
             }
@@ -201,40 +136,6 @@ public class MainActivity extends BaseActivity implements MainView, NavigationVi
         getMh50KeyIv();
 
     }
-
-
-//    public void getUesrInfo() {
-//        String accessTocken = mPreference.getString(PreferenceManager.PREFERENCES_USER_TOCKEN, null);
-//        if (accessTocken != null) {
-//            AuthenticationAPIClient authentication = new AuthenticationAPIClient(auth0);
-//            authentication
-//                .userInfo(accessTocken)
-//                .start(new BaseCallback<UserProfile, AuthenticationException>() {
-//                    @Override
-//                    public void onSuccess(UserProfile information) {
-//                        //user information received
-//                        mPreference.putString(PreferenceManager.PREFERENCES_USER_EMAIL, information.getEmail());
-//                        mPreference.putString(PreferenceManager.PREFERENCES_USER_NAME, information.getName());
-//                        mPreference.putString(PreferenceManager.PREFERENCES_USER_ID, (String) information.getExtraInfo().get("sub"));
-//                    }
-//
-//                    @Override
-//                    public void onFailure(AuthenticationException error) {
-//                        //user information request failed
-//                        HintUtils.showToast(MainActivity.this, R.string.user_login_failed);
-//                    }
-//                });
-//        } else {
-//            HintUtils.showToast(MainActivity.this, R.string.user_login_failed);
-//        }
-//    }
-
-//    @Override
-//    protected void initUser() {
-//        //auth0
-//        auth0 = new Auth0(this);
-//        auth0.setOIDCConformant(true);
-//    }
 
     private void initDrawerToggle() {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, 0, 0) {
@@ -549,14 +450,14 @@ public class MainActivity extends BaseActivity implements MainView, NavigationVi
                             Log.d("FireBase_FirstOpenMsg", "Config params updated Failed. ");
                         }
 
-                        String showMsg = mFirebaseRemoteConfig.getString("first_open_msg");
-                        if (!mPreference.getBoolean(PreferenceManager.PREF_MAIN_NOTICE, false)
-                                || showMsg.compareTo(mPreference.getString(PreferenceManager.PREF_MAIN_NOTICE_LAST, "")) != 0) {
-                            mPreference.putString(PreferenceManager.PREF_MAIN_NOTICE_LAST, showMsg);
-                            MessageDialogFragment fragment = MessageDialogFragment.newInstance(R.string.main_notice,
-                                    showMsg, false, DIALOG_REQUEST_NOTICE);
-                            fragment.show(getSupportFragmentManager(), null);
-                        }
+//                        String showMsg = mFirebaseRemoteConfig.getString("first_open_msg");
+//                        if (!mPreference.getBoolean(PreferenceManager.PREF_MAIN_NOTICE, false)
+//                                || showMsg.compareTo(mPreference.getString(PreferenceManager.PREF_MAIN_NOTICE_LAST, "")) != 0) {
+//                            mPreference.putString(PreferenceManager.PREF_MAIN_NOTICE_LAST, showMsg);
+//                            MessageDialogFragment fragment = MessageDialogFragment.newInstance(R.string.main_notice,
+//                                    showMsg, false, DIALOG_REQUEST_NOTICE);
+//                            fragment.show(getSupportFragmentManager(), null);
+//                        }
                     }
                 });
     }

@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initAdMob();
+//        initAdMob();
         mPreference = App.getPreferenceManager();
         initTheme();
         setContentView(getLayoutRes());

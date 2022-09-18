@@ -54,6 +54,7 @@ public class UpdateHelper {
      */
     private static void initSource(DaoSession session) {
         List<Source> list = new ArrayList<>();
+        list.add(BAOZIMH.getDefaultSource());
         list.add(IKanman.getDefaultSource());
         list.add(Dmzj.getDefaultSource());
         list.add(HHAAZZ.getDefaultSource());

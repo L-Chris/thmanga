@@ -81,12 +81,6 @@
                         android:gravity="center"
                         android:text="@string/the_public_summary"
                         android:textSize="14sp" />
-                    <ImageView
-                        android:id="@+id/reader_back_btn"
-                        android:layout_width="175dp"
-                        android:layout_height="175dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/cimoc" />
                 </LinearLayout>
 
                 <LinearLayout

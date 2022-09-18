@@ -1,5 +1,7 @@
 package com.haleydu.cimoc.presenter;
 
+import android.os.Debug;
+
 import com.haleydu.cimoc.App;
 import com.haleydu.cimoc.core.Update;
 import com.haleydu.cimoc.core.UpdateJson;
@@ -35,7 +37,7 @@ public class MainPresenter extends BasePresenter<MainView> {
     private static final String APP_MD5 = "md5";
     private static final String APP_URL= "url";
 
-    private static final String SOURCE_URL = "https://raw.githubusercontent.com/Haleydu/update/master/sourceBaseUrl.json";
+    private static final String SOURCE_URL = "https://gitee.com/Haleydu/update/raw/master/sourceBaseUrl.json";
 
     @Override
     protected void onViewAttach() {
@@ -122,7 +124,9 @@ public class MainPresenter extends BasePresenter<MainView> {
     }
 
 
-    public void getSourceBaseUrl() {
+    public void
+    getSourceBaseUrl() {
+        Debug.waitForDebugger();
         mCompositeSubscription.add(
                 Observable.create(new Observable.OnSubscribe<String>() {
                     @Override
@@ -133,6 +137,7 @@ public class MainPresenter extends BasePresenter<MainView> {
                         try {
                             response = client.newCall(request).execute();
                             if (response.isSuccessful()) {
+
                                 String json = response.body().string();
                                 subscriber.onNext(json);
                                 subscriber.onCompleted();
@@ -153,7 +158,7 @@ public class MainPresenter extends BasePresenter<MainView> {
                             public void call(String json) {
                                 try {
                                     String HHAAZZ = new JSONObject(json).getString("HHAAZZ");
-                                    String sw = new JSONObject(json).getString("sw");
+                                    String sw = new JSONObject(json).getString("HHAAZZ_SW");
                                     if (!HHAAZZ.equals(App.getPreferenceManager().getString(PreferenceManager.PREF_HHAAZZ_BASEURL, ""))){
                                         App.getPreferenceManager().putString(PreferenceManager.PREF_HHAAZZ_BASEURL, HHAAZZ);
                                     }

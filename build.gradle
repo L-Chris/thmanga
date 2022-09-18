@@ -2,9 +2,13 @@
 
 buildscript {
     repositories {
-        jcenter()
-        mavenCentral()
-        google()
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+//        jcenter()
+//        mavenCentral()
+//        google()
         maven { url 'http://developer.huawei.com/repo/' }
 
     }
@@ -23,10 +27,14 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
-        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+//        jcenter()
+//        mavenCentral()
         maven { url "https://maven.google.com" }
-        google()
+//        google()
         maven { url "http://mirrors.tools.huawei.com/maven/" }
         maven { url 'http://developer.huawei.com/repo/' }
     }
