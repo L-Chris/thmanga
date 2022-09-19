@@ -21,12 +21,9 @@ public class UpdateHelper {
     // 1.04.08.008
     private static final int VERSION = BuildConfig.VERSION_CODE;
 
-    public static void update(PreferenceManager manager, final DaoSession session) {
-        int version = manager.getInt(PreferenceManager.PREF_APP_VERSION, 0);
-        if (version != VERSION) {
-            initSource(session);
-            manager.putInt(PreferenceManager.PREF_APP_VERSION, VERSION);
-        }
+    public static void update(PreferenceManager manager, final DaoSession session, List<Source> list) {
+        initSource(session, list);
+        manager.putInt(PreferenceManager.PREF_APP_VERSION, VERSION);
     }
 
     /**
@@ -49,9 +46,6 @@ public class UpdateHelper {
         });
     }
 
-    /**
-     * 初始化图源
-     */
     private static void initSource(DaoSession session) {
         List<Source> list = new ArrayList<>();
         list.add(BAOZIMH.getDefaultSource());
@@ -101,6 +95,13 @@ public class UpdateHelper {
         list.add(QiMiaoMH.getDefaultSource());
         list.add(YKMH.getDefaultSource());
         list.add(DmzjFix.getDefaultSource());
+        session.getSourceDao().insertOrReplaceInTx(list);
+    }
+
+    /**
+     * 初始化图源
+     */
+    private static void initSource(DaoSession session, List<Source> list) {
         session.getSourceDao().insertOrReplaceInTx(list);
     }
 }

@@ -19,7 +19,6 @@ import com.haleydu.cimoc.component.AppGetter;
 import com.haleydu.cimoc.core.Storage;
 import com.haleydu.cimoc.fresco.ControllerBuilderProvider;
 import com.haleydu.cimoc.helper.DBOpenHelper;
-import com.haleydu.cimoc.helper.UpdateHelper;
 import com.haleydu.cimoc.manager.PreferenceManager;
 import com.haleydu.cimoc.manager.SourceManager;
 import com.haleydu.cimoc.misc.ActivityLifecycle;
@@ -88,7 +87,6 @@ public class App extends MultiDexApplication implements AppGetter, Thread.Uncaug
         mPreferenceManager = new PreferenceManager(this);
         DBOpenHelper helper = new DBOpenHelper(this, "cimoc.db");
         mDaoSession = new DaoMaster(helper.getWritableDatabase()).newSession(IdentityScopeType.None);
-        UpdateHelper.update(mPreferenceManager, getDaoSession());
         Fresco.initialize(this);
         initPixels();
 
